@@ -1,0 +1,23 @@
+{
+  "name": "metalsmith-data",
+  "description": "A metalsmith plugin to add namespaced global data objects from files.",
+  "author": "Darin Reid <darin@elcontraption.com>",
+  "repository": "git@github.com:elcontraption/metalsmith-data",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "eslint src/index.js && mocha"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "metalsmith": "^2.1.0",
+    "mocha": "^2.4.5",
+    "should": "^8.2.1"
+  },
+  "dependencies": {
+    "js-yaml": "^3.5.4",
+    "lodash.defaults": "^4.0.1",
+    "lodash.foreach": "^3.0.3"
+  }
+}
