@@ -3,7 +3,7 @@
   "description": "A metalsmith plugin to add namespaced global data objects from files.",
   "author": "Darin Reid <darin@elcontraption.com>",
   "repository": "git@github.com:elcontraption/metalsmith-data",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
