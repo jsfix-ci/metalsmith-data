@@ -28,5 +28,18 @@ describe('metalsmith-data', function () {
         });
     });
 
+    it('should assign a nested property to a namespace', function (done) {
+        var m = Metalsmith('test/fixtures')
+            .use(data({
+                test: {
+                    src: './test/fixtures/nested.json',
+                    property: 'data'
+                }
+            }));
 
+        m.build(function (err) {
+            m.metadata().data.test.should.deepEqual({ string: 'string' });
+            done();
+        });
+    });
 });

@@ -15,29 +15,44 @@ function plugin (opts) {
 
     return function (files, metalsmith, done) {
         var data = {};
+        var name;
 
-        for (var key in opts) {
-            var ext = path.extname(opts[key]);
-            var parse = parsers[ext];
-            var stat;
+        for (name in opts) {
 
-            try {
-                stat = fs.statSync(opts[key]);
-
-                // File type must be supported
-                if (parsers.hasOwnProperty(ext) === -1) throw new Error('unsupported file type "' + ext + '"');
-
-                // File must exist
-                if (!stat.isFile()) throw new Error('file "' + opts[key] + '" not found');
-
-                data[key] = parse(String(fs.readFileSync(opts[key])));
-            } catch (e) {
-                throw new Error(e);
+            if (typeof opts[name] === 'object') {
+                data[name] = parse(opts[name].src, opts[name].property);
+                continue;
             }
+
+            data[name] = parse(opts[name]);
         }
 
         metalsmith.metadata().data = data;
         done();
     };
 
+    function parse (file, prop) {
+        var ext = path.extname(file);
+        var parse = parsers[ext];
+        var stat;
+        var data;
+
+        try {
+            stat = fs.statSync(file);
+
+            // File type must be supported
+            if (parsers.hasOwnProperty(ext) === -1) throw new Error('unsupported file type "' + ext + '"');
+
+            // File must exist
+            if (!stat.isFile()) throw new Error('file "' + file + '" not found');
+
+            data = parse(fs.readFileSync(file));
+
+            if (prop) return data[prop];
+
+            return data;
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
 }
