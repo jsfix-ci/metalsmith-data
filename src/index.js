@@ -19,12 +19,20 @@ function plugin (opts) {
 
         for (name in opts) {
 
-            if (typeof opts[name] === 'object') {
-                data[name] = parse(opts[name].src, opts[name].property);
-                continue;
-            }
+            // allows you to add dynamic data from configuration
+            if (typeof opts[name] === 'object' && !opts[name].src) {
+                data[name] = opts[name];
+            } else if (typeof opts[name] === 'function') {
+                // or use a function to generate the data
+                data[name] = opts[name]();
+            } else {
+                if (typeof opts[name] === 'object') {
+                    data[name] = parse(opts[name].src, opts[name].property);
+                    continue;
+                }
 
-            data[name] = parse(opts[name]);
+                data[name] = parse(opts[name]);
+            }
         }
 
         metalsmith.metadata().data = data;
