@@ -35,3 +35,6 @@ metalsmith
     }
   ))
 ```
+
+## Contributing
+See [Contributing](https://github.com/elcontraption/metalsmith-data/blob/master/CONTRIBUTING.md).
