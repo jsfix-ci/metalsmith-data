@@ -1,4 +1,4 @@
-# Metalsmith data
+# metalsmith-data
 A metalsmith plugin to add namespaced global data objects from files or dynamically from plain JS objects or functions.
 
 ## Installation
