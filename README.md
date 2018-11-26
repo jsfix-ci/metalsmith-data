@@ -30,6 +30,19 @@ metalsmith
         test4: function() {
             var bar = 1+2;
             return { foo: bar }
-        }
+        },
+        
+        // Add options to use with a CSV file
+        // See: https://csv.js.org/parse/options/
+        test5: {
+            src: './path/to/test/file.csv',
+            options:{
+                delimiter: ',',
+                columns:true,
+                trim: true,
+                skip_empty_lines: true,
+                skip_lines_with_error:true
+              }
+        },
     }));
 ```
