@@ -72,4 +72,22 @@ describe('metalsmith-data', function () {
             done();
         });
     });
+
+    it('should parse CSV', function (done) {
+        var m = Metalsmith('test/fixtures')
+            .use(data({
+                test: {
+                    src: './test/fixtures/src/data.csv',
+                    options: {
+                        delimiter: ',',
+                        columns:true
+                    }
+                }
+            }));
+
+        m.build(function (err) {
+            m.metadata().data.test.should.deepEqual([{ string: 'string' ,number: '0' }]);
+            done();
+        });
+    });
 });
