@@ -41,7 +41,7 @@ function plugin (opts) {
         done();
     };
 
-    function parse (file, prop,options) {
+    function parse (file, prop, options) {
         var ext = path.extname(file);
         var parser = parsers[ext];
         var stat;
@@ -55,24 +55,24 @@ function plugin (opts) {
             // File must exist
             if (!stat.isFile()) throw new Error('file "' + file + '" not found');
 
-            if(ext == '.csv'){
-              data = [];
-              const csvparser = parser(options)
-              csvparser.write(fs.readFileSync(file));
-              csvparser.end();
-              // Use the readable stream api
-              csvparser.on('readable', function(){
-                let record
-                while (record = csvparser.read()) {
-                  data.push(record)
-                }
-              });
-              // Catch any error
-              csvparser.on('error', function(err){
-                console.error(err.message)
-              })
-            }else{
-              data = parser(fs.readFileSync(file));
+            if (ext === '.csv') {
+                data = [];
+                const csvparser = parser(options);
+                csvparser.write(fs.readFileSync(file));
+                csvparser.end();
+                // Use the readable stream api
+                csvparser.on('readable', function () {
+                    let record;
+                    while (record = csvparser.read()) {
+                        data.push(record);
+                    }
+                });
+                // Catch any error
+                csvparser.on('error', function (err) {
+                    console.error(err.message);
+                });
+            } else {
+                data = parser(fs.readFileSync(file));
             }
 
             if (prop) return data[prop];
