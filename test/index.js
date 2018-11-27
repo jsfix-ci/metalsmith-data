@@ -80,13 +80,14 @@ describe('metalsmith-data', function () {
                     src: './test/fixtures/src/data.csv',
                     options: {
                         delimiter: ',',
-                        columns:true
+                        columns:true,
+                        cast:true
                     }
                 }
             }));
 
         m.build(function (err) {
-            m.metadata().data.test.should.deepEqual([{ string: 'string' ,number: '0' }]);
+            m.metadata().data.test.should.deepEqual([{ string: 'string' ,number: 0 }]);
             done();
         });
     });
