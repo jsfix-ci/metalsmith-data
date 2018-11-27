@@ -37,11 +37,10 @@ metalsmith
         test5: {
             src: './path/to/test/file.csv',
             options:{
-                delimiter: ',',
-                columns:true,
-                trim: true,
-                skip_empty_lines: true,
-                skip_lines_with_error:true
+                delimiter: ',', //Set the field delimiter. Defaults to ","
+                columns:true, //Generate records as object literals instead of arrays
+                trim: true, //ignore whitespace immediately around the delimiter
+                cast:true //attempt to convert input string to native types
               }
         },
     }));
