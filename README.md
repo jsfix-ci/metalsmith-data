@@ -27,13 +27,25 @@ metalsmith
         foo: 'bar'
       },
 
-      // Add a plain JS object to the `data.test4` namespace, via a function:
-      test4: function() {
-        var bar = 1+2 
-        return { foo: bar }
-      }
-    }
-  ))
+
+        // Add a plain JS object to the `data.test4` namespace, via a function:
+        test4: function() {
+            var bar = 1+2;
+            return { foo: bar }
+        },
+        
+        // Add options to use with a CSV file
+        // See: https://csv.js.org/parse/options/
+        test5: {
+            src: './path/to/test/file.csv',
+            options:{
+                delimiter: ',', //Set the field delimiter. Defaults to ","
+                columns:true, //Generate records as object literals instead of arrays
+                trim: true, //ignore whitespace immediately around the delimiter
+                cast:true //attempt to convert input string to native types
+              }
+        },
+    }));
 ```
 
 ## Contributing
