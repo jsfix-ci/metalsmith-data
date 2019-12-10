@@ -19,7 +19,10 @@ metalsmith
       // Add nested property from file to the `data.test2` namespace:
       test2: {
         src: './path/to/test/file.json',
-        property: 'propName'
+        property: 'propName',
+        options: {
+          ignoreMissingFile: true, //do not throw an error if the file is missing. Defaults to "false"
+        }
       },
 
       // Add a plain JS object to the `data.test3` namespace:
