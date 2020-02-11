@@ -44,17 +44,16 @@ function plugin (opts) {
   function parse (file, prop, options) {
     var ext = path.extname(file)
     var parser = parsers[ext]
-    var stat
     var data
 
     try {
-      stat = fs.statSync(file)
+      if (!fs.existsSync(file) && options.ignoreMissingFile) {
+        // file not exists but ignoreMissingFile options allows it
+        return false
+      }
 
       // File type must be supported
       if (parsers.hasOwnProperty(ext) === -1) throw new Error('unsupported file type "' + ext + '"')
-
-      // File must exist
-      if (!stat.isFile()) throw new Error('file "' + file + '" not found')
 
       if (ext === '.csv') {
         data = []
