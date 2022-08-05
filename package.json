@@ -22,7 +22,7 @@
     "should": "^8.2.1"
   },
   "dependencies": {
-    "csv-parse": "4.8.5",
+    "csv-parse": "^5.3.0",
     "js-yaml": "3.13.1",
     "lodash.defaults": "^4.0.1",
     "lodash.foreach": "^3.0.3"
